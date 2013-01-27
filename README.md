@@ -8,6 +8,8 @@ Installation
 
 You can install the server into /var/www/pyWebIDauth. If you want to change the location, then you need to remember to modify the wsgi script (webid.wsgi) to reflect the new path.
 
+Once the server is up and running, you can go to `https://localhost/auth` to test the authentication script.
+
 Dependencies
 ------------
 
