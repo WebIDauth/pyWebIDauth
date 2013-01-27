@@ -1,7 +1,7 @@
 pyWebIDauth
 ===========
 
-A quick python implementation of WebID authentication.
+A quick python implementation of WebID authentication. More details about WebID [here](http://webid.info/).
 
 Dependencies
 ------------
@@ -9,7 +9,7 @@ Dependencies
  * bottle.py (the REST server)
  * rdflib (RDF utilities)
 
-RDFLib may be installed with setuptools (easy_install) or pip::
+RDFLib may be installed with setuptools (easy_install) or pip:
 
     $ easy_install rdflib
 or
