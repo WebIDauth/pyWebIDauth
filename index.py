@@ -11,12 +11,9 @@ def hello():
 
 
 @get('/auth')
-def test():
-    ret = ''
+def auth():
 
-#    cert=request.environ['SSL_CLIENT_CERT']
-#    return dict(os.environ.items()) 
-    return wsgiref.environ
+    cert=request.environ['SSL_CLIENT_CERT']
     # this works
     c=M2Crypto.X509.load_cert_string(cert)
 
