@@ -3,23 +3,51 @@ pyWebIDauth
 
 A quick python implementation of WebID authentication. More details about WebID [here](http://webid.info/).
 
+Installation
+------------
+
+You can install the server into /var/www/pyWebIDauth. If you want to change the location, then you need to remember to modify the wsgi script (webid.wsgi) to reflect the new path.
+
 Dependencies
 ------------
 
  * mod_wsgi (Apache)
  * bottle.py (the REST server)
- * rdflib (RDF utilities)
+ * rdflib (RDF parsing)
+ * rdfextras (RDF utilities)
 
-RDFLib may be installed with setuptools (easy_install) or pip:
+rdflib and rdfextras may be installed with setuptools (easy_install) or pip:
 
     $ easy_install rdflib
 or
 
     $ pip install rdflib
 
-The reason why Apache is required is to expose the certificate contents to the Web application.
+The reason why Apache is required is to expose the certificate contents to the Web application. Here is a typical Apache configuration:
+
+```
+<VirtualHost *>
+    ServerName py.example.com 
+    Include /var/www/conf/ssl.conf
+
+    WSGIDaemonProcess test user=www-data group=www-data processes=1 threads=5
+    WSGIScriptAlias / /var/www/py/webid.wsgi
+    
+    <Directory /var/www/py>
+        WSGIProcessGroup test
+        WSGIApplicationGroup %{GLOBAL}
+        WSGIPassApacheRequest On
+        SSLOptions +StdEnvVars
+        Order deny,allow
+        Allow from all
+    </Directory>
+</VirtualHost>
+```
+
 
 License
 -------
 
 MIT
+
+
