@@ -28,12 +28,13 @@ The reason why Apache is required is to expose the certificate contents to the W
 ```
 <VirtualHost *>
     ServerName py.example.com 
+    # ssl.conf contains your server's SSL certificates
     Include /var/www/conf/ssl.conf
 
     WSGIDaemonProcess test user=www-data group=www-data processes=1 threads=5
-    WSGIScriptAlias / /var/www/py/webid.wsgi
+    WSGIScriptAlias / /var/www/pyWebIDauth/webid.wsgi
     
-    <Directory /var/www/py>
+    <Directory /var/www/pyWebIDauth>
         WSGIProcessGroup test
         WSGIApplicationGroup %{GLOBAL}
         WSGIPassApacheRequest On
